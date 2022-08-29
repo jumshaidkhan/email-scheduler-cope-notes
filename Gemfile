@@ -33,6 +33,9 @@ gem 'rack-cors'
 gem 'rubocop', require: false
 gem 'rubocop-rails'
 gem 'rubocop-rspec'
+gem 'redis'
+gem 'sidekiq'
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
