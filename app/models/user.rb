@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :recieved_messages
   has_many :messages, through: :recieved_messages
+
+  def unsent_messages
+    Message.pluck(:id) - self.messages.pluck(:id)
+  end
 end
