@@ -1,13 +1,10 @@
 class SendMessageJob < ApplicationJob
   queue_as :default
   
-  def perform(email, content)
-    user = User.find_by_email(email)
-    message = Message.find_by_content(content)
+  def perform(user, message)
     if user.unsent_messages.any?
-      MessageMailer.submission(user, message)
-
-      SendMessageJob.set(wait: 1.minute).perform_later( email, content)
+      MessageMailer.with(user: user, message: message).submission.deliver_now
+      SendMessageJob.set(wait: 1.minute).perform_later( user, Message.find(user.unsent_messages.sample)) if user.unsent_messages.any?
     end
       # Do something later
   end
