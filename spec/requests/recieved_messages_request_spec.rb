@@ -3,7 +3,7 @@
 RSpec.describe 'Recieved_Messages', type: :request do
   # initialize test data
   let!(:user) { create(:user) }
-  let!(:message) { create(:message).id }
+  let!(:message) { create(:message) }
 
   describe 'new user session' do
     context 'with valid request' do
@@ -37,11 +37,11 @@ RSpec.describe 'Recieved_Messages', type: :request do
       end
 
       it 'should get all messages sent to the user' do
-        get '/api/v1/messages', headers: @auth_params
+        get '/api/v1/recieved_messages', headers: @auth_params
         expect(json.size).to eq(0)
       end
 
-      it 'should send email' do
+      it 'should notify user' do
         create_recieved_message
         expect(response).to have_http_status(201)
       end
@@ -50,12 +50,6 @@ RSpec.describe 'Recieved_Messages', type: :request do
         recieved_message = create_recieved_message
         get api_v1_recieved_message_path(recieved_message), headers: @auth_params
         expect(json['id']).to eq(recieved_message.id)
-      end
-
-      it 'should update recieved_message' do
-        recieved_message = create_recieved_message
-        patch api_v1_recieved_message_path(recieved_message), headers: @auth_params, params: recieved_message_attributes
-        expect(response).to have_http_status(200)
       end
 
       it 'should destroy recieved_message' do
@@ -84,8 +78,8 @@ RSpec.describe 'Recieved_Messages', type: :request do
   end
 
   def create_recieved_message
-    post api_v1_reser_path, headers: @auth_params,
-                            params: recieved_message_attributes(user_id: user.id, message_id: message.id)
+    post api_v1_recieved_messages_path, headers: @auth_params,
+                            params: recieved_message_attributes(user.id, message.id)
     response.status == 201 ? RecievedMessage.first : nil
   end
 end
