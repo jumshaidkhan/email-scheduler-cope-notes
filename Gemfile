@@ -29,7 +29,6 @@ gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
 gem 'rubocop', require: false
 gem 'rubocop-rails'
 gem 'rubocop-rspec'
@@ -43,6 +42,7 @@ group :development, :test do
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'rspec-rails', '~> 3.6'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'mailcatcher'
 end
 
 group :development do
