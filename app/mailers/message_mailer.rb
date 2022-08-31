@@ -5,8 +5,7 @@ class MessageMailer < ApplicationMailer
     user = params[:user]
     message = params[:message]
     @message = message.content
-    RecievedMessage.create(user_id: user.id, message_id: message.id) 
-    mail(to: user.email, subject: 'Reminder')
+    received_messsage = RecievedMessage.new(user_id: user.id, message_id: message.id) 
+    mail(to: user.email, subject: 'Reminder') if received_messsage.save
   end
-  
 end
