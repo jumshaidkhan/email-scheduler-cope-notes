@@ -4,7 +4,7 @@ class SendMessageJob < ApplicationJob
   def perform(user, message)
     if user.unsent_messages.any?
       MessageMailer.with(user: user, message: message).submission.deliver_now
-      SendMessageJob.set(wait: 1.minute).perform_later( user, Message.find(user.unsent_messages.sample)) if user.unsent_messages.any?
+      SendMessageJob.set(wait: 1.minute).perform_later( user, user.unsent_messages.sample) if user.unsent_messages.any?
     end
       # Do something later
   end
