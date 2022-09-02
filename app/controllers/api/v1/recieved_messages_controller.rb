@@ -10,6 +10,10 @@ module Api
           :user_id, :message_id
         )
       end
+
+      def load_collection
+        self.current_collection = RecievedMessageSerializer.new(current_user.recieved_messages.page(params[:page]))
+      end
     end
   end
 end
