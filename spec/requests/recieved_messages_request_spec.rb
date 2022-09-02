@@ -79,7 +79,7 @@ RSpec.describe 'Recieved_Messages', type: :request do
 
   def create_recieved_message
     post api_v1_recieved_messages_path, headers: @auth_params,
-                            params: recieved_message_attributes(user.id, message.id)
+                                        params: recieved_message_attributes(user.id, message.id)
     response.status == 201 ? RecievedMessage.first : nil
   end
 end

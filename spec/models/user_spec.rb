@@ -5,7 +5,7 @@ RSpec.describe Message, type: :model do
 
   let(:user) { build :user }
   it 'should send user the available message after sign up' do
-    expect(user).to receive(:send_mail) 
+    expect(user).to receive(:send_mail)
     user.run_callbacks(:create)
   end
 end

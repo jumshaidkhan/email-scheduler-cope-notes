@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/faker-ruby/faker.git
-  revision: aaf6cbe9841877113da1ead8b5538fc072e4efb6
+  revision: f54db334a271b22121e54de77a3a231b5f3c4ca9
   branch: master
   specs:
-    faker (2.22.0)
+    faker (2.23.0)
       i18n (>= 1.8.11, < 2)
 
 GEM
@@ -150,6 +150,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-protection (2.2.2)
       rack
     rack-test (2.0.2)
@@ -182,10 +184,10 @@ GEM
       thor (~> 1.0)
     rainbow (3.1.1)
     rake (13.0.6)
-    rb-fsevent (0.11.1)
+    rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (5.0.1)
+    redis (5.0.2)
       redis-client (~> 0.7)
     redis-client (0.7.1)
       connection_pool
@@ -211,7 +213,7 @@ GEM
       rspec-mocks (~> 3.9.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.4)
-    rubocop (1.35.1)
+    rubocop (1.36.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.1.2.1)
@@ -287,6 +289,7 @@ DEPENDENCIES
   mailcatcher
   pg
   puma (~> 5.0)
+  rack-cors
   rails (~> 6.1.4)
   redis
   rspec-rails (~> 3.6)

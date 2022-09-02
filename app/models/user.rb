@@ -9,14 +9,13 @@ class User < ActiveRecord::Base
   has_many :recieved_messages
   has_many :messages, through: :recieved_messages
   after_create :send_mail
-  
+
   def send_mail
     message = unsent_messages.sample
     SendMessageJob.perform_later(self, message) if message
   end
-  
-  def unsent_messages
-   Message.where.not(id: self.messages.ids)
-  end
 
+  def unsent_messages
+    Message.where.not(id: messages.ids)
+  end
 end

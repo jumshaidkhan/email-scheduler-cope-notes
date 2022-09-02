@@ -11,8 +11,6 @@ gem 'rails', '~> 6.1.4'
 gem 'devise_token_auth'
 gem 'pg'
 
-gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
-
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -29,10 +27,11 @@ gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors'
+gem 'redis'
 gem 'rubocop', require: false
 gem 'rubocop-rails'
 gem 'rubocop-rspec'
-gem 'redis'
 gem 'sidekiq'
 
 group :development, :test do
@@ -40,9 +39,9 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+  gem 'mailcatcher'
   gem 'rspec-rails', '~> 3.6'
   gem 'shoulda-matchers', '~> 5.0'
-  gem 'mailcatcher'
 end
 
 group :development do
