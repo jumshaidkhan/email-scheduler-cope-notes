@@ -30,6 +30,8 @@ Now go to Postman and import this API for testing
 
 3. `GET http://localhost:3000/api/v1/recieved_messages`
 
+  Postman Collection: [Email Scheduler](https://www.getpostman.com/collections/d91631085f9afb205b28)
+
 ## Steps need to Follow
 
 1. Create a user using API or use existing(seed) user
@@ -40,9 +42,15 @@ Now go to Postman and import this API for testing
 
 4. Set these three values into environment variable on Postman. Ref: https://learning.postman.com/docs/sending-requests/variables/
 
-5. Run API for `recieved_messages` to verify the user is recieving messages randomly after each minute (by viewing `created_at` time for each record)
+5. Run API for `recieved_messages` to verify the user is recieving messages randomly after each minute (by viewing `sent_at` time for each record)
 
 ## Design Decisions
+* Model Classes: `User`, `Message`, `RecievedMessage`
+* `User` can have many `Messages` and Every `Message` can be sent to multiple users (`many-to-many`)
+* `RecievedMessages` have a unique relation with `User` and `Message` so that no `User` can recieve same `Message` again.
+
+## Algorithms
+  The algorithm used for enqueing messages is when the user creates an account, it emits the job to enqueue messages and send after every minute through email.
 
 ### API Design
 Using my Rails API boilerplate, all the CRUD operations of any resource can be implemented within seconds. However, I have only generated routes for the three APIs required in the technical assessment. You can add more routes for remaining CRUD operations in `api_v1.rb` file. Adding the routes is enough to run the CRUD for Restful resources.
